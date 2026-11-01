@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" path="res://src/scenes/main.gd" id="1_main"]
 [ext_resource type="Script" path="res://src/world/road_manager.gd" id="2_road"]
-[ext_resource type="PackedScene" path="res://src/entities/bus/danfo_bus.tscn" id="3_bus"]
-[ext_resource type="Script" path="res://src/camera/follow_camera_2d.gd" id="4_cam"]
-[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="5_hud"]
+[ext_resource type="Script" path="res://src/entities/passenger/passenger_manager.gd" id="3_pass_mgr"]
+[ext_resource type="PackedScene" path="res://src/entities/bus/danfo_bus.tscn" id="4_bus"]
+[ext_resource type="PackedScene" path="res://src/entities/bus/bot_bus.tscn" id="5_bot"]
+[ext_resource type="Script" path="res://src/camera/follow_camera_2d.gd" id="6_cam"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="7_hud"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
@@ -12,11 +14,17 @@ script = ExtResource("1_main")
 [node name="RoadManager" type="Node2D" parent="."]
 script = ExtResource("2_road")
 
-[node name="PlayerBus" parent="." instance=ExtResource("3_bus")]
+[node name="PassengerManager" type="Node2D" parent="."]
+script = ExtResource("3_pass_mgr")
+
+[node name="PlayerBus" parent="." instance=ExtResource("4_bus")]
 position = Vector2(-70, 0)
+
+[node name="BotBus" parent="." instance=ExtResource("5_bot")]
+position = Vector2(70, -40)
 
 [node name="FollowCamera2D" type="Camera2D" parent="."]
 position = Vector2(-70, -180)
-script = ExtResource("4_cam")
+script = ExtResource("6_cam")
 
-[node name="HUD" parent="." instance=ExtResource("5_hud")]
+[node name="HUD" parent="." instance=ExtResource("7_hud")]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/ui/hud.gd" id="1_hud"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fare"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_player_fare"]
 bg_color = Color(0.02, 0.02, 0.03, 0.85)
 border_width_left = 2
 border_width_top = 2
@@ -13,12 +13,12 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_speed"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rival_fare"]
 bg_color = Color(0.02, 0.02, 0.03, 0.85)
 border_width_left = 2
 border_width_top = 2
@@ -29,10 +29,26 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_speed"]
+bg_color = Color(0.02, 0.02, 0.03, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 1, 0.35, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 14.0
+content_margin_top = 6.0
+content_margin_right = 14.0
+content_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boost_bg"]
 bg_color = Color(0.05, 0.05, 0.07, 0.9)
@@ -81,26 +97,47 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 70.0
+offset_bottom = 75.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 24
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 24
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
 
 [node name="TopHBox" type="HBoxContainer" parent="RootControl/TopMargin"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 
-[node name="FareContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
+[node name="PlayerFareContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_fare")
+theme_override_styles/panel = SubResource("StyleBoxFlat_player_fare")
 
-[node name="FareLabel" type="Label" parent="RootControl/TopMargin/TopHBox/FareContainer"]
+[node name="PlayerFareLabel" type="Label" parent="RootControl/TopMargin/TopHBox/PlayerFareContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.05, 1)
-theme_override_font_sizes/font_size = 20
-text = "FARE: ₦0"
+theme_override_font_sizes/font_size = 18
+text = "YOU: ₦0"
+
+[node name="RivalFareContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rival_fare")
+
+[node name="RivalFareLabel" type="Label" parent="RootControl/TopMargin/TopHBox/RivalFareContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.92, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "OSHODI ROCKET: ₦0"
+
+[node name="LeadStatusContainer" type="CenterContainer" parent="RootControl/TopMargin/TopHBox"]
+layout_mode = 2
+
+[node name="LeadStatusLabel" type="Label" parent="RootControl/TopMargin/TopHBox/LeadStatusContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
+theme_override_font_sizes/font_size = 14
+text = "TIED"
 
 [node name="Spacer" type="Control" parent="RootControl/TopMargin/TopHBox"]
 layout_mode = 2
@@ -113,8 +150,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_speed")
 [node name="SpeedLabel" type="Label" parent="RootControl/TopMargin/TopHBox/SpeedContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.92, 1, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.3, 1, 0.35, 1)
+theme_override_font_sizes/font_size = 18
 text = "0 KM/H"
 
 [node name="BottomMargin" type="MarginContainer" parent="RootControl"]

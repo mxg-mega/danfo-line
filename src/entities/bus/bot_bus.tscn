@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://b0tb01r0ck3t"]
+
+[ext_resource type="Script" path="res://src/entities/bus/bot_bus.gd" id="1_bot"]
+[ext_resource type="Script" path="res://src/entities/bus/danfo_visual.gd" id="2_vis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
+size = Vector2(46, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pickup"]
+size = Vector2(64, 104)
+
+[node name="BotBus" type="CharacterBody2D"]
+collision_layer = 1
+collision_mask = 2
+script = ExtResource("1_bot")
+bus_name = "Oshodi Rocket"
+bus_color = Color(0, 0.92, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1")
+
+[node name="DanfoVisual" type="Node2D" parent="."]
+script = ExtResource("2_vis")
+bus_color = Color(0, 0.92, 1, 1)
+
+[node name="TrailMount" type="Marker2D" parent="."]
+position = Vector2(0, 46)
+
+[node name="PickupArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("RectangleShape2D_pickup")

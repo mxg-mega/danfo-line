@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://p4ss3ng3r001"]
+
+[ext_resource type="Script" path="res://src/entities/passenger/passenger.gd" id="1_pass"]
+[ext_resource type="Script" path="res://src/entities/passenger/passenger_visual.gd" id="2_vis"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1"]
+radius = 42.0
+
+[node name="Passenger" type="Area2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_pass")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1")
+
+[node name="PassengerVisual" type="Node2D" parent="."]
+script = ExtResource("2_vis")
+
+[node name="FareTag" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -36.0
+offset_right = 60.0
+offset_bottom = -16.0
+theme_override_font_sizes/font_size = 14
+text = "₦150"
+horizontal_alignment = 1
+vertical_alignment = 1

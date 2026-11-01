@@ -46,6 +46,14 @@ func _ready() -> void:
 	current_forward_speed = base_speed
 	if visual:
 		visual.bus_color = bus_color
+	
+	var pickup_area: Area2D = get_node_or_null("PickupArea") as Area2D
+	if pickup_area:
+		pickup_area.area_entered.connect(_on_pickup_area_entered)
+
+func _on_pickup_area_entered(area: Area2D) -> void:
+	if area and area.has_method("collect"):
+		area.call("collect", self)
 
 func _physics_process(delta: float) -> void:
 	_update_boost(delta)
