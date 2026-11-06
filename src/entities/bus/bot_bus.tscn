@@ -11,7 +11,7 @@ size = Vector2(64, 104)
 
 [node name="BotBus" type="CharacterBody2D"]
 collision_layer = 1
-collision_mask = 2
+collision_mask = 1
 script = ExtResource("1_bot")
 bus_name = "Oshodi Rocket"
 bus_color = Color(0, 0.92, 1, 1)

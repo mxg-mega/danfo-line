@@ -11,7 +11,7 @@ size = Vector2(64, 104)
 
 [node name="DanfoBus" type="CharacterBody2D"]
 collision_layer = 1
-collision_mask = 2
+collision_mask = 1
 script = ExtResource("1_bus")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

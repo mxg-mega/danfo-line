@@ -1,30 +1,49 @@
 [gd_scene format=3 uid="uid://b7v8k1m2n3p4q"]
 
 [ext_resource type="Script" path="res://src/scenes/main.gd" id="1_main"]
-[ext_resource type="Script" path="res://src/world/road_manager.gd" id="2_road"]
-[ext_resource type="Script" path="res://src/entities/passenger/passenger_manager.gd" id="3_pass_mgr"]
-[ext_resource type="PackedScene" path="res://src/entities/bus/danfo_bus.tscn" id="4_bus"]
-[ext_resource type="PackedScene" path="res://src/entities/bus/bot_bus.tscn" id="5_bot"]
-[ext_resource type="Script" path="res://src/camera/follow_camera_2d.gd" id="6_cam"]
-[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="7_hud"]
+[ext_resource type="Script" path="res://src/audio/audio_manager.gd" id="2_audio"]
+[ext_resource type="Script" path="res://src/common/game_manager.gd" id="3_gm"]
+[ext_resource type="Script" path="res://src/ui/conductor_system.gd" id="4_cond"]
+[ext_resource type="Script" path="res://src/world/road_manager.gd" id="5_road"]
+[ext_resource type="Script" path="res://src/entities/passenger/passenger_manager.gd" id="6_pass_mgr"]
+[ext_resource type="Script" path="res://src/world/obstacles/obstacle_manager.gd" id="7_obs_mgr"]
+[ext_resource type="PackedScene" path="res://src/entities/bus/danfo_bus.tscn" id="8_bus"]
+[ext_resource type="Script" path="res://src/camera/follow_camera_2d.gd" id="9_cam"]
+[ext_resource type="PackedScene" path="res://src/ui/hud.tscn" id="10_hud"]
+[ext_resource type="PackedScene" path="res://src/ui/results_screen.tscn" id="11_res"]
+[ext_resource type="Script" path="res://src/ui/pause_screen.gd" id="12_pause"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
 
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("2_audio")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("3_gm")
+
+[node name="ConductorSystem" type="Node" parent="."]
+script = ExtResource("4_cond")
+
 [node name="RoadManager" type="Node2D" parent="."]
-script = ExtResource("2_road")
+script = ExtResource("5_road")
 
 [node name="PassengerManager" type="Node2D" parent="."]
-script = ExtResource("3_pass_mgr")
+script = ExtResource("6_pass_mgr")
 
-[node name="PlayerBus" parent="." instance=ExtResource("4_bus")]
+[node name="ObstacleManager" type="Node2D" parent="."]
+script = ExtResource("7_obs_mgr")
+
+[node name="PlayerBus" parent="." instance=ExtResource("8_bus")]
 position = Vector2(-70, 0)
-
-[node name="BotBus" parent="." instance=ExtResource("5_bot")]
-position = Vector2(70, -40)
 
 [node name="FollowCamera2D" type="Camera2D" parent="."]
 position = Vector2(-70, -180)
-script = ExtResource("6_cam")
+script = ExtResource("9_cam")
 
-[node name="HUD" parent="." instance=ExtResource("7_hud")]
+[node name="HUD" parent="." instance=ExtResource("10_hud")]
+
+[node name="ResultsScreen" parent="." instance=ExtResource("11_res")]
+
+[node name="PauseScreen" type="CanvasLayer" parent="."]
+script = ExtResource("12_pause")

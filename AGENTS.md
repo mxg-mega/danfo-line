@@ -13,7 +13,7 @@ Player vs bots only (no online multiplayer). Target: Web + Android for itch.io.
 Look: minimal neon on black, abstract line traffic, rhythmic engine/horn sounds.
 
 ## Engine & language
-- Godot **4.6** (exact version in project.godot). Never use Godot 3 APIs or outdated 4.x patterns.
+- Godot **4.7.2** (exact version in project.godot). Never use Godot 3 APIs or outdated 4.x patterns.
 - Pure GDScript (no C#).
 - Always use modern Godot 4 syntax:
   - `@export`, `@onready`, typed variables, `await`, `signal.emit()`, `signal.connect(callable)`
@@ -31,6 +31,10 @@ Look: minimal neon on black, abstract line traffic, rhythmic engine/horn sounds.
 - One focused change per request. Explain what you changed and why.
 
 ## Architecture notes (current intent)
+- Scene flow: `src/ui/main_menu.tscn` (main scene) → Driver Select → `src/scenes/main.tscn` race → Results (restart or main menu).
+- `GameState` autoload (`src/common/game_state.gd`) holds the chosen driver id (persisted in `user://settings.cfg`) and master volume. Driver roster lives in `src/data/drivers.gd` (`class_name Drivers`); portraits in `src/assets/characters/`.
+- Player bus identity is applied via `PlayerBus.apply_driver_identity(name, color)`; rival bots take the remaining roster drivers' names/accents in `main.gd`.
+- Pause: `src/ui/pause_screen.gd` (CanvasLayer, PROCESS_MODE_ALWAYS) toggles `get_tree().paused` via Esc or the HUD PAUSE button; embeds `SettingsScreen` (master volume + fullscreen) also used by the main menu.
 - Player bus and rival buses share similar base behavior (movement, trail, passenger pickup).
 - Trails are visual (Line2D or similar) that persist and create the neon tangle.
 - Passengers spawn roadside; first bus to reach them claims the fare.

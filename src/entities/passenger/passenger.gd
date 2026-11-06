@@ -71,6 +71,16 @@ func collect(claiming_bus: Node) -> void:
 	claiming_bus.call("add_fare", fare_value)
 	collected.emit(claiming_bus, fare_value)
 	
+	# Audio feedback
+	var tree_root: Window = get_tree().root
+	if tree_root:
+		var am: Node = tree_root.find_child("AudioManager", true, false)
+		if am:
+			if is_vip and am.has_method("play_vip_pickup"):
+				am.call("play_vip_pickup")
+			elif am.has_method("play_pickup"):
+				am.call("play_pickup")
+	
 	# Spawn floating score feedback
 	_spawn_feedback()
 	

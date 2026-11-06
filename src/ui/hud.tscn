@@ -2,24 +2,8 @@
 
 [ext_resource type="Script" path="res://src/ui/hud.gd" id="1_hud"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_player_fare"]
-bg_color = Color(0.02, 0.02, 0.03, 0.85)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.88, 0.05, 0.9)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-content_margin_left = 14.0
-content_margin_top = 6.0
-content_margin_right = 14.0
-content_margin_bottom = 6.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rival_fare"]
-bg_color = Color(0.02, 0.02, 0.03, 0.85)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pause_btn"]
+bg_color = Color(0.02, 0.08, 0.12, 0.9)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -34,8 +18,40 @@ content_margin_top = 6.0
 content_margin_right = 14.0
 content_margin_bottom = 6.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_speed"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_box"]
+bg_color = Color(0.02, 0.02, 0.03, 0.88)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.88, 0.05, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leaderboard"]
 bg_color = Color(0.02, 0.02, 0.03, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.92, 1, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_speed"]
+bg_color = Color(0.02, 0.02, 0.03, 0.88)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -45,9 +61,9 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-content_margin_left = 14.0
+content_margin_left = 12.0
 content_margin_top = 6.0
-content_margin_right = 14.0
+content_margin_right = 12.0
 content_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boost_bg"]
@@ -81,6 +97,38 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_conductor"]
+bg_color = Color(0.04, 0.04, 0.06, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.88, 0.05, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 20.0
+content_margin_top = 8.0
+content_margin_right = 20.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_horn_btn"]
+bg_color = Color(0.12, 0.08, 0.02, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.7, 0.1, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 16.0
+content_margin_top = 6.0
+content_margin_right = 16.0
+content_margin_bottom = 6.0
+
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_hud")
 
@@ -97,7 +145,7 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 75.0
+offset_bottom = 80.0
 grow_horizontal = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 16
@@ -105,39 +153,29 @@ theme_override_constants/margin_right = 20
 
 [node name="TopHBox" type="HBoxContainer" parent="RootControl/TopMargin"]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 14
 
-[node name="PlayerFareContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
+[node name="TimerContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_player_fare")
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
 
-[node name="PlayerFareLabel" type="Label" parent="RootControl/TopMargin/TopHBox/PlayerFareContainer"]
+[node name="TimerLabel" type="Label" parent="RootControl/TopMargin/TopHBox/TimerContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.05, 1)
-theme_override_font_sizes/font_size = 18
-text = "YOU: ₦0"
+theme_override_font_sizes/font_size = 20
+text = "01:30"
 
-[node name="RivalFareContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
+[node name="SeatsContainer" type="PanelContainer" parent="RootControl/TopMargin/TopHBox"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_rival_fare")
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
 
-[node name="RivalFareLabel" type="Label" parent="RootControl/TopMargin/TopHBox/RivalFareContainer"]
+[node name="SeatsLabel" type="Label" parent="RootControl/TopMargin/TopHBox/SeatsContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.92, 1, 1)
-theme_override_font_sizes/font_size = 18
-text = "OSHODI ROCKET: ₦0"
-
-[node name="LeadStatusContainer" type="CenterContainer" parent="RootControl/TopMargin/TopHBox"]
-layout_mode = 2
-
-[node name="LeadStatusLabel" type="Label" parent="RootControl/TopMargin/TopHBox/LeadStatusContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
-theme_override_font_sizes/font_size = 14
-text = "TIED"
+theme_override_colors/font_color = Color(0.2, 1, 0.4, 1)
+theme_override_font_sizes/font_size = 17
+text = "SEATS: 0/14 (x1.0)"
 
 [node name="Spacer" type="Control" parent="RootControl/TopMargin/TopHBox"]
 layout_mode = 2
@@ -154,25 +192,86 @@ theme_override_colors/font_color = Color(0.3, 1, 0.35, 1)
 theme_override_font_sizes/font_size = 18
 text = "0 KM/H"
 
+[node name="PauseButton" type="Button" parent="RootControl/TopMargin/TopHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0.92, 1, 1)
+theme_override_colors/font_hover_color = Color(0.5, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_pause_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pause_btn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pause_btn")
+text = "PAUSE"
+
+[node name="LeaderboardMargin" type="MarginContainer" parent="RootControl"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 80.0
+offset_right = -20.0
+offset_bottom = 220.0
+grow_horizontal = 0
+
+[node name="LeaderboardPanel" type="PanelContainer" parent="RootControl/LeaderboardMargin"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_leaderboard")
+
+[node name="LeaderboardContainer" type="VBoxContainer" parent="RootControl/LeaderboardMargin/LeaderboardPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ConductorMargin" type="MarginContainer" parent="RootControl"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -160.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CenterBox" type="CenterContainer" parent="RootControl/ConductorMargin"]
+layout_mode = 2
+
+[node name="ConductorPanel" type="PanelContainer" parent="RootControl/ConductorMargin/CenterBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_conductor")
+
+[node name="ConductorLabel" type="Label" parent="RootControl/ConductorMargin/CenterBox/ConductorPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.2, 1)
+theme_override_font_sizes/font_size = 16
+text = "📢 \"Enter with your change!\""
+
 [node name="BottomMargin" type="MarginContainer" parent="RootControl"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -110.0
+offset_top = -105.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 16
 
-[node name="BottomVBox" type="VBoxContainer" parent="RootControl/BottomMargin"]
+[node name="BottomHBox" type="HBoxContainer" parent="RootControl/BottomMargin"]
 layout_mode = 2
-size_flags_horizontal = 4
 alignment = 1
 
-[node name="BoostLabel" type="Label" parent="RootControl/BottomMargin/BottomVBox"]
+[node name="BottomVBox" type="VBoxContainer" parent="RootControl/BottomMargin/BottomHBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="BoostLabel" type="Label" parent="RootControl/BottomMargin/BottomHBox/BottomVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.92, 1, 0.9)
@@ -180,13 +279,13 @@ theme_override_font_sizes/font_size = 14
 text = "BOOST [SPACE]"
 horizontal_alignment = 1
 
-[node name="BoostGlow" type="Panel" parent="RootControl/BottomMargin/BottomVBox"]
+[node name="BoostGlow" type="Panel" parent="RootControl/BottomMargin/BottomHBox/BottomVBox"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(320, 18)
+custom_minimum_size = Vector2(300, 18)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_glow")
 
-[node name="BoostBar" type="ProgressBar" parent="RootControl/BottomMargin/BottomVBox/BoostGlow"]
+[node name="BoostBar" type="ProgressBar" parent="RootControl/BottomMargin/BottomHBox/BottomVBox/BoostGlow"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -199,10 +298,28 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_boost_fill")
 value = 100.0
 show_percentage = false
 
-[node name="ControlsHint" type="Label" parent="RootControl/BottomMargin/BottomVBox"]
+[node name="ControlsHint" type="Label" parent="RootControl/BottomMargin/BottomHBox/BottomVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.65, 0.75, 0.8)
-theme_override_font_sizes/font_size = 13
-text = "STEER: [A / D] or [ARROWS]   •   BOOST: [SPACE] or [W]"
+theme_override_font_sizes/font_size = 12
+text = "STEER: [A / D]   •   BOOST: [SPACE]   •   HORN: [H]"
 horizontal_alignment = 1
+
+[node name="HornButton" type="Button" parent="RootControl/BottomMargin/BottomHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.8, 0.1, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_horn_btn")
+text = "📢 HORN [H]"
+
+[node name="BoostButton" type="Button" parent="RootControl/BottomMargin/BottomHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.12, 0.08, 0.02, 0.9)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_horn_btn")
+text = "BOOST [SPACE]"
